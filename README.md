@@ -3,7 +3,21 @@
 ## Transaction Managment Service Endpoints
 
 DbSchema:
-
+```
++-------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| Field             | Type          | Null | Key | Default           | Extra                                         |
++-------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| transaction_id    | varchar(255)  | NO   | PRI | NULL              |                                               |
+| account_num       | varchar(255)  | NO   |     | NULL              | auto_increment                                |
+| user_id           | varchar(255)  | NO   |     | NULL              |                                               |
+| amount            | decimal(18,2) | NO   |     | 0.00              |                                               |
+| transafer_to      | varchar(255)  | NO   |     | NULL              |                                               |
+| date              | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
+| status            | varchar(255)  | NO   |     | NULL              |                                               |
+| type              | varchar(255)  | NO   |     | NULL              |                                               |
+| comment           | varchar(255)  | YES  |     | NULL              |                                               |
++-------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+```
 ## List Transactions
 A user hits this endpoint in order to view their transactions. It uses pagenation to list a specefic number of records at once.For viewing a specefic transaction we can specify the transaction id of that record. 
 There will be jwt token containing userid in cookie for authentication of user.
@@ -53,8 +67,10 @@ Request Body:
 {
   "account_number":"acc_no."
   "amount": total amount of the transaction as float,
-  "status":"Approved or Rejected"
-  "transafer_to"
+  "status":"Approved or Rejected",
+  "transafer_to":"name of receiver",
+  "comment":"comment if any"
+  "type":"debit or credit"
 }
 ```
 
