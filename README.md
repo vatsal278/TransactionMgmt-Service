@@ -4,20 +4,60 @@
 
 DbSchema:
 ```
-+----------------+---------------+------+-----+-------------------+-------------------+
-| Field          | Type          | Null | Key | Default           | Extra             |
-+----------------+---------------+------+-----+-------------------+-------------------+
-| transaction_id | varchar(255)  | NO   | PRI | NULL              |                   |
-| account_number | int           | NO   |     | NULL              |                   |
-| user_id        | varchar(255)  | NO   |     | NULL              |                   |
-| amount         | decimal(18,2) | NO   |     | 0.00              |                   |
-| transfer_to    | varchar(255)  | NO   |     | NULL              |                   |
-| date           | timestamp     | NO   | MUL | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-| status         | varchar(255)  | NO   |     | NULL              |                   |
-| type           | varchar(255)  | NO   |     | NULL              |                   |
-| comment        | varchar(255)  | YES  |     | NULL              |                   |
-+----------------+---------------+------+-----+-------------------+-------------------+
++----------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| Field          | Type          | Null | Key | Default           | Extra                                         |
++----------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| transaction_id | varchar(255)  | NO   | PRI | NULL              |                                               |
+| account_number | int           | NO   |     | NULL              |                                               |
+| user_id        | varchar(255)  | NO   |     | NULL              |                                               |
+| amount         | decimal(18,2) | NO   |     | 0.00              |                                               |
+| transfer_to    | varchar(255)  | NO   |     | NULL              |                                               |
+| created_at     | timestamp     | NO   | MUL | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| updated_at     | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
+| status         | varchar(255)  | NO   |     | NULL              |                                               |
+| type           | varchar(255)  | NO   |     | NULL              |                                               |
+| comment        | varchar(255)  | YES  |     | NULL              |                                               |
++----------------+---------------+------+-----+-------------------+-----------------------------------------------+
 
+```
+Html Template File:
+```
+<table class="tg">
+    <tbody>
+    <tr>
+        <td class="tg-fymr">TransferFrom</td>
+        <td class="tg-fymr">TransferTo</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">{{.Name}}<br>{{.TransferFromAccountNumber}}</td>
+        <td class="tg-0pky">{{.TransferToAccountNumber}}</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">Amount</td>
+        <td class="tg-fymr">Type</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">{{.Amount}}</td>
+        <td class="tg-0pky">{{.Type}}</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">TransactionId</td>
+        <td class="tg-fymr">Status</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">{{.TransactionId}}</td>
+        <td class="tg-0pky">{{.Status}}</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">Date</td>
+        <td class="tg-fymr">Comment</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky">{{.Date}}</td>
+        <td class="tg-0pky">{{.Comment}}</td>
+    </tr>
+    </tbody>
+</table>
 ```
 ## List Transactions
 A user hits this endpoint in order to view their transactions. It uses pagenation to list a specefic number of records at once.For viewing a specefic transaction we can specify the transaction id of that record. 
