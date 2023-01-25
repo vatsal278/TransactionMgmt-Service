@@ -13,7 +13,7 @@ DbSchema:
 | amount         | decimal(18,2) | NO   |     | 0.00              |                                               |
 | transfer_to    | varchar(255)  | NO   |     | NULL              |                                               |
 | created_at     | timestamp     | NO   | MUL | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
-| updated_at     | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
+| updated_at     | timestamp     | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
 | status         | varchar(255)  | NO   |     | NULL              |                                               |
 | type           | varchar(255)  | NO   |     | NULL              |                                               |
 | comment        | varchar(255)  | YES  |     | NULL              |                                               |
